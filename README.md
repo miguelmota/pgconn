@@ -22,6 +22,14 @@ Type "help" for help.
 ebdb=>
 ```
 
+Preview
+
+```bash
+$ pgconn postgres://awsuser:MySeCrEt@fake-db.bmauoc9z0fpi.us-east-1.rds.amazonaws.com:5432/ebdb --preview
+
+PGPASSWORD=MySeCrEt psql -U awsuser -h fake-db.bmauoc9z0fpi.us-east-1.rds.amazonaws.com -p 5432 ebdb
+```
+
 
 ## License
 

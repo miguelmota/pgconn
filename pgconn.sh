@@ -1,6 +1,7 @@
 #!/bin/bash
 
 URI=$1
+FLAG=$2
 
 if [ -z "$URI" ]; then
   printf "Connection URI string argument is required"
@@ -15,4 +16,9 @@ HOST=$(printf "$URI" | cut -d':' -f3 | cut -d'@' -f2)
 PORT=$(printf "$URI" | cut -d':' -f4 | cut -d'/' -f1)
 DB=$(printf "$URI" | cut -d':' -f4 | cut -d'/' -f2)
 
-PGPASSWORD=$PASS psql -U $USER -h $HOST -p $PORT $DB
+if [ "$FLAG" == "--preview" ]; then
+  printf "PGPASSWORD=$PASS psql -U $USER -h $HOST -p $PORT $DB"
+  exit
+fi
+
+PGPASSWORD=$PASS psql -U $USER -h $HOST -p $PORT $DB ${@:2}
