@@ -21,4 +21,9 @@ if [ "$FLAG" == "--preview" ]; then
   exit
 fi
 
+if [ "$FLAG" == "--preview-pgdump" ]; then
+  printf "PGPASSWORD=$PASS pg_dump -U $USER -h $HOST -p $PORT $DB"
+  exit
+fi
+
 PGPASSWORD=$PASS psql -U $USER -h $HOST -p $PORT $DB ${@:2}
